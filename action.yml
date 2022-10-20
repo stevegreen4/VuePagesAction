@@ -7,6 +7,10 @@ inputs:
   username:
     description: 'Your username'
     required: true
+  orgname:
+    description: 'Your username or Your organization name'
+    required: false
+    default: 'none'
   reponame:
     description: 'Your reponame'
     required: true
@@ -48,5 +52,7 @@ runs:
               git init
               git add -A
               git commit -m '${{ inputs.gitmsg }}'
-              git push -f https://${{ inputs.username }}:${{ inputs.token }}@github.com/${{ inputs.username }}/${{ inputs.reponame }}.git master:gh-pages
+              orgname=${{ inputs.username }}
+              if [ "none" !=  ${{ inputs.orgname }} ]; then orgname=${{ inputs.orgname }}; fi
+              git push -f https://${{ inputs.username }}:${{ inputs.token }}@github.com/${{ orgname }}/${{ inputs.reponame }}.git master:gh-pages
         shell: bash
