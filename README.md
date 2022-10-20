@@ -36,7 +36,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Vue App to Github Pages
-        uses: StruggleYang/VuePagesAction@1.0.5
+        uses: StruggleYang/VuePagesAction@2.0.0
         with:
           useyarn: true # if project is npm build ,set false
 ```
