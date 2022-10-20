@@ -1,4 +1,4 @@
-name: 'Vue to Github Pages'
+name: 'Vue App to Github Pages'
 branding:
   icon: 'activity'  
   color: 'blue'
@@ -54,5 +54,5 @@ runs:
               git commit -m '${{ inputs.gitmsg }}'
               orgname=${{ inputs.username }}
               if [ "none" !=  ${{ inputs.orgname }} ]; then orgname=${{ inputs.orgname }}; fi
-              git push -f https://${{ inputs.username }}:${{ inputs.token }}@github.com/${{ orgname }}/${{ inputs.reponame }}.git master:gh-pages
+              git push -f https://${{ inputs.username }}:${{ inputs.token }}@github.com/$orgname/${{ inputs.reponame }}.git master:gh-pages
         shell: bash
