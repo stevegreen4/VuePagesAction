@@ -3,32 +3,20 @@ branding:
   icon: 'activity'  
   color: 'blue'
 description: 'This Action will Build your Vue Project and deploy it to Github Pages'
-inputs:
-  useyarn:
-    description: 'Use yarn to build'
-    required: false
-    default: true
-  cname:
-    description: 'Your custom domain'
-    required: false
-    default: 'none'
 runs:
   using: "composite"
   steps:
-      - name: Build Vue
+      - name: Build Vue Project
         run: |
-              if [ true ==  ${{ inputs.useyarn }} ]; then yarn install --frozen-lockfile; else npm ci; fi
-              if [ true ==  ${{ inputs.useyarn }} ]; then yarn build; else npm run build; fi
-              if [ "none" !=  ${{ inputs.cname }} ]; then cd dist&&echo '${{ inputs.cname }}' > CNAME&&cd ..; fi
+              npm ci;
+              npm run build;
               ls
         shell: bash
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v3.0.6
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v2.0.0
         with:
-          # Upload entire repository
           path: './dist'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+      - name: Deploy GitHub Pages site
+        uses: actions/deploy-pages@v2.0.4

@@ -22,8 +22,6 @@ export default defineConfig({
 });
 ```
 
-> If project has CNAME file, steps 1 and 2 ignore
-
 3. Create a Github Actions Workflow file and add this to it (and replace "YourGithubName" and "YourRepoName" with the names)
 ```yml
 name: Build Vue
@@ -36,14 +34,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Vue App to Github Pages
-        uses: StruggleYang/VuePagesAction@2.0.0
-        with:
-          useyarn: true # if project is npm build ,set false
+        uses: dencee/VuePagesAction@v1.0.0
 ```
-4. Go to `Settings` -> Scroll down to `Pages` -> Select Source as `GitHub Actions`
-
-## Options 🔧
-|   Name   |            Description           |     Default    | Required |
-|:--------:|:--------------------------------:|:--------------:|:--------:|
-|   cname  |           Custom domain          |        -       |     ❌    |
-|  useyarn |         Use yarn to build        |      true      |     ❌    |
+4. Go to `Settings` -> Scroll down to `Pages` -> Build and Development: Source -> `GitHub Actions`
