@@ -26,6 +26,9 @@ export default defineConfig({
 ```yml
 name: Build Vue
 on: [push]
+permissions:
+  id-token: write
+  pages: write
 jobs:
   build_vue:
     runs-on: ubuntu-latest
